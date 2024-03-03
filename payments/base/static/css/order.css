@@ -1,0 +1,86 @@
+/* order.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+.order-page {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.order-title {
+    color: #333;
+    text-align: center;
+}
+
+.back-link {
+    margin-bottom: 20px;
+}
+
+.back-link a {
+    text-decoration: none;
+    color: #3498db;
+    transition: color 0.3s;
+}
+
+.back-link a:hover {
+    color: #2c3e50;
+}
+
+.page-title {
+    color: #333;
+    text-align: center;
+}
+
+.order-id {
+    color: #555;
+}
+
+.separator {
+    border: 0;
+    height: 1px;
+    background: #ddd;
+    margin: 20px 0;
+}
+
+.order-item-details {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.item-name, .item-description, .item-price {
+    margin: 10px 0;
+    color: #333;
+}
+
+.total-amount {
+    margin-top: 20px;
+    color: #27ae60;
+}
+
+.checkout-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.checkout-button:hover {
+    background-color: #2980b9;
+}
+
+/* Add more styles as needed */

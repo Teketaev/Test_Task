@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static '/css/home.css' %}">
+    <title>Home Page</title>
+</head>
+<body class="home-page">
+    <h1 class="page-title">Home Page</h1>
+    <h2 class="section-title">Items:</h2>
+    {% for item in items %}
+        <p class="item-info">{{ item.name }} <a class="view-link" href="{% url 'get_item_page' item.id %}">View</a></p>
+    {% endfor %}
+    <hr class="separator">
+    <h2 class="section-title">Orders:</h2>
+    {% for order in orders %}
+        <p class="order-info">Order #{{ order.id }} <a class="view-link" href="{% url 'get_order_page' order.id %}">View</a></p>
+    {% endfor %}
+</body>
+</html>

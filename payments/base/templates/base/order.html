@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '/css/order.css' %}">
+    <title class="order-title">Order {{ order.id }}</title>
+</head>
+<body class="order-page">
+    <p class="back-link"><a href="{% url 'home' %}">Back to Home Page</a></p>
+    <h1 class="page-title">Order Details</h1>
+    <p class="order-id">Order ID: {{ order.id }}</p>
+    {% for item in order.items.all %}
+    <hr class="separator">
+        <div class="order-item-details">
+            <p class="item-name">Item Name: {{ item.name }}</p>
+            <p class="item-description">Item Description: {{ item.description }}</p>
+            <p class="item-price">Item Price: ${{ item.price }}</p>
+        </div>
+    <hr class="separator">
+    {% endfor %}
+    <p class="total-amount">Total Amount: ${{ order.calculate_total }} (Discounts: {% for discount in order.discounts.all %} {{ discount }} {% endfor %}, Taxes: {% for tax in order.taxes.all %} {{ tax }} {% endfor %})</p>
+    <button class="checkout-button" id="checkoutButton">Proceed to Checkout</button>
+
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        var stripe = Stripe('pk_test_51OprVHP1lRySLVYJS3ZKK7vO0Ujg4nelDq0Q6FpQ8EGDk2nsUspHpNmICNPrJSmoNj7Q2cd2G16etksy5dV1MA1v00m3vUeQcJ');
+        var checkoutButton = document.getElementById('checkoutButton');
+
+        checkoutButton.addEventListener('click', function () {
+            fetch('/order/{{ order.id }}/checkout/')
+                .then(response => response.json())
+                .then(session => {
+                    return stripe.redirectToCheckout({ sessionId: session.session_id });
+                })
+                .then(result => {
+                    if (result.error) {
+                        alert(result.error.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        });
+    </script>
+</body>
+</html>
