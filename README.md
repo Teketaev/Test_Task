@@ -6,3 +6,5 @@ STRIPE_SECRET_KEY='вставьте свой Secret Key из Stripe'
 6. В терминал - docker-compose build
 7. В терминал - docker-compose up -d
 8. Перейдите в http://localhost:8000/ на своем браузере
+
+Заметка: Если при нажатии [Buy] и [Proceed to Checkout] ничего не происходит также замените в payments/base/templates/base/item.html и order.html - var stripe = Stripe('Вставьте сюда свой Public Key');
